@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<!-- 
+  نسخه نهایی، کامل و مفصل پروپوزال دیجیتال
+  طراحی شده با تمرکز بر تجربه بصری و انیمیشن‌های اسکرول.
+-->
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پروپوزال برای پلتفرم ریل: یک سفر تعاملی</title>
+    
+    <!-- اتصال به فونت وزیرمتن -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+    
+    <style>
+        :root {
+            --bg-color: #121212; /* پس‌زمینه تیره سینمایی */
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #cda45e; /* طلایی گرم و هنری */
+            --card-bg-color: #1c1c1c;
+            --border-color: #333333;
+            --font-family: 'Vazirmatn', sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.9;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 960px; /* افزایش عرض کانتینر برای جای دادن محتوای بیشتر */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- بخش Hero --- */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 0 15px;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 300;
+            color: var(--heading-color);
+            margin: 0 0 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #a0a0a0;
+        }
+        
+        .scroll-down-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: #666;
+            animation: bounce 2s infinite;
+        }
+
+        /* --- بخش‌های محتوایی --- */
+        .content-section {
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        .alt-bg {
+            background-color: #151515;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: var(--heading-color);
+            text-align: center;
+            margin-bottom: 20px; /* کاهش فاصله پایین برای متن مقدمه */
+        }
+
+        .section-title span {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .intro-text {
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto 80px; /* افزایش فاصله پایین برای جدا کردن از گرید */
+            text-align: center;
+            color: #b0b0b0;
+        }
+
+        /* --- گرید کارت‌ها برای فلسفه، نقشه راه و فرآیند --- */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .three-column-grid {
+             display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .card {
+            background-color: var(--card-bg-color);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        
+        .card h4 {
+            font-size: 1.1rem;
+            color: var(--heading-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            padding-right: 20px;
+            list-style-type: '– ';
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            text-align: right;
+            flex-grow: 1;
+        }
+        
+        .card li {
+            margin-bottom: 15px;
+        }
+        
+        .card p {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+        
+        .card .example {
+            font-size: 0.85rem;
+            color: #888;
+            font-style: italic;
+            display: block;
+            margin-top: -10px;
+            margin-right: 10px;
+        }
+
+        /* --- بخش فراخوان --- */
+        .cta-section {
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 45px;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #fff;
+            color: #121212;
+            transform: scale(1.05);
+        }
+        
+        /* --- پاورقی --- */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-color);
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* --- انیمیشن‌ها --- */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* --- طراحی ریسپانسیو (اصلاح شده برای موبایل) --- */
+        @media (max-width: 960px) {
+             .three-column-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.8rem; /* کاهش سایز تیتر اصلی */
+            }
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            .section-title {
+                font-size: 2.2rem; /* کاهش سایز تیتر بخش‌ها */
+            }
+            .content-section {
+                padding: 80px 0; /* کاهش فاصله عمودی بخش‌ها */
+            }
+            .intro-text {
+                margin-bottom: 60px; /* کاهش فاصله متن مقدمه */
+            }
+            .cards-grid, .three-column-grid {
+                grid-template-columns: 1fr; /* تک ستونه کردن تمام گریدها */
+            }
+            .card {
+                padding: 30px; /* کاهش پدینگ داخلی کارت‌ها */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- بخش اول: جلد -->
+    <section class="hero-section">
+        <div class="hero-content fade-in-up is-visible">
+            <h1>ریل، مسیر خیال شما</h1>
+            <p>یک پروپوزال استراتژیک برای آغاز سفری مشترک</p>
+        </div>
+        <div class="scroll-down-indicator">اسکرول کنید</div>
+    </section>
+
+    <!-- بخش دوم: فلسفه مسیر -->
+    <section class="content-section">
+        <div class="container">
+            <div class="fade-in-up">
+                <h2 class="section-title">درک من از <span>فلسفه شما</span></h2>
+                <p class="intro-text">پس از تحلیل دقیق کسب‌وکار شما، به این نتیجه رسیدم که موفقیت «ریل» یک فرمول ندارد؛ یک «فلسفه» دارد. درک من از فلسفه شما بر سه ستون قدرتمند استوار است که آن را از یک آژانس تبلیغاتی به یک پدیده فرهنگی تبدیل می‌کند.</p>
+                <div class="three-column-grid">
+                    <div class="card fade-in-up">
+                        <h3>۱. اعتبار از جنس تجربه</h3>
+                        <p>بنیان «ریل» بر تجربه زیسته تیمی بنا شده که تمام ایستگاه‌های این حوزه را لمس کرده‌اند: از کف کتابفروشی و درک نبض مخاطب، تا اتاق فکر یک نشر و چالش‌های تجاری خلق یک اثر. این یعنی شما چالش‌های مشتریان خود را «زندگی» کرده‌اید.</p>
+                    </div>
+                    <div class="card fade-in-up">
+                        <h3>۲. استراتژی اقیانوس آبی</h3>
+                        <p>شما هوشمندانه از رقابت‌های فرسایشی اقیانوس قرمز خدمات عمومی دوری کرده‌اید. با تمرکز بر کتاب و هنر، در اقیانوسی آبی حرکت می‌کنید که در آن، ارزش بر اساس دانش تخصصی سنجیده می‌شود، نه صرفاً قیمت.</p>
+                    </div>
+                    <div class="card fade-in-up">
+                        <h3>۳. روح برند: ریل و خیال</h3>
+                        <p>نام و شعار شما، جوهره فلسفه شماست. «ریل» وعده ساختار و مسیر مطمئن را می‌دهد و «خیال» به آن روح هنری و جادویی می‌بخشد. شما برای تحقق رویاهای هنری، مسیری منطقی و استراتژیک می‌سازید.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش سوم: نقشه راه -->
+    <section class="content-section alt-bg">
+        <div class="container">
+            <h2 class="section-title fade-in-up">نقشه <span>راه</span> پیشنهادی</h2>
+            <div class="cards-grid">
+                <div class="card fade-in-up">
+                    <h3>ریل تخصص (لینکدین)</h3>
+                    <p>اینجا تریبون شما برای گفتگوهای استراتژیک با ناشران، گالری‌ها و تصمیم‌گیران حوزه است. هدف ما تبدیل شدن به یک مرجع فکری قابل اعتماد است که با محتوای عمیق، اعتبار حرفه‌ای شما را تثبیت کرده و پروژه‌های بزرگ را جذب می‌کند.</p>
+                    <ul>
+                        <li><strong>مطالعات موردی عمیق:</strong> روایت داستان موفقیت پروژه‌ها با ساختار «چالش، راهکار، نتیجه».
+                            <span class="example">مثال: «چگونه فروش رمان «سایه‌ها» را در ۶۰ روز اول، ۲۰۰٪ افزایش دادیم؟»</span>
+                        </li>
+                        <li><strong>تحلیل و بینش استراتژیک:</strong> بررسی ترندهای حوزه نشر و هنر و ارائه دیدگاه‌های منحصر به فرد.
+                            <span class="example">مثال: «آینده حوزه نشر در عصر دیجیتال: تهدیدها و فرصت‌ها»</span>
+                        </li>
+                        <li><strong>معرفی متدولوژی «ریل»:</strong> به اشتراک‌گذاری فرآیندهای فکری پشت کمپین‌ها برای نمایش رویکرد منحصر به فرد شما.
+                            <span class="example">مثال: «چرا در ریل، استراتژی بر خلاقیت مقدم است؟»</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card fade-in-up">
+                    <h3>ریل احساس (اینستاگرام)</h3>
+                    <p>اینجا قلب تپنده برند و ویترین خلاقیت شماست. هدف ما ساختن یک جامعه فرهنگی پویا و الهام‌بخش است که با محتوای بصری جذاب، روح برند «ریل» را به نمایش می‌گذارد و مخاطبان را به صورت احساسی درگیر می‌کند.</p>
+                     <ul>
+                        <li><strong>ویترین خیال و هنر:</strong> تبدیل هر اثر هنری به یک تجربه دیجیتال برای انتقال زیبایی و عمق آن.
+                            <span class="example">مثال: «یک ریلز سینمایی از ورق خوردن کتابی با جلد خاص و موسیقی تاثیرگذار.»</span>
+                        </li>
+                        <li><strong>پشت صحنه مسیرسازی:</strong> نمایش چهره انسانی برند شما برای ایجاد اعتماد و حس نزدیکی.
+                            <span class="example">مثال: «یک ویدیوی کوتاه از جلسه طوفان فکری تیم برای کمپین یک کتاب جدید.»</span>
+                        </li>
+                        <li><strong>کارگاه‌های دیجیتال و تعامل:</strong> ارائه آموزش‌های سریع و کاربردی برای جذب مخاطب و ایجاد گفتگو.
+                            <span class="example">مثال: «۳ نکته برای عکاسی حرفه‌ای از اثر هنری با موبایل در ۱۵ ثانیه.»</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- بخش چهارم: قیف محتوا -->
+    <section class="content-section">
+        <div class="container">
+            <div class="fade-in-up">
+                <h2 class="section-title">قیف محتوا: <span>سفر مخاطب</span></h2>
+                <p class="intro-text">ما تنها محتوا تولید نمی‌کنیم؛ ما برای مخاطبان شما یک سفر طراحی می‌کنیم. هر قطعه از محتوا، ایستگاهی در این سفر است که مخاطب را از مرحله آگاهی اولیه به تصمیم‌گیری برای همکاری با شما هدایت می‌کند.</p>
+                <div class="three-column-grid">
+                    <div class="card fade-in-up">
+                        <h4>مرحله ۱: آگاهی</h4>
+                        <p><strong>هدف:</strong> جلب توجه مخاطبان گسترده و نمایش خلاقیت و تخصص شما در نگاه اول.</p>
+                        <ul>
+                            <li>ریلزهای الهام‌بخش در اینستاگرام</li>
+                            <li>پست‌های بصری هنری در اینستاگرام</li>
+                            <li>تحلیل‌های کوتاه از ترندها در لینکدین</li>
+                        </ul>
+                    </div>
+                    <div class="card fade-in-up">
+                        <h4>مرحله ۲: علاقه و بررسی</h4>
+                        <p><strong>هدف:</strong> عمیق‌تر کردن رابطه با مخاطبان و ارائه اطلاعاتی که اعتبار شما را ثابت می‌کند.</p>
+                        <ul>
+                            <li>داستان‌های پشت صحنه در اینستاگرام</li>
+                            <li>تشریح متدولوژی «ریل» در لینکدین</li>
+                            <li>مطالعات موردی کامل و دقیق</li>
+                        </ul>
+                    </div>
+                    <div class="card fade-in-up">
+                        <h4>مرحله ۳: تصمیم و اقدام</h4>
+                        <p><strong>هدف:</strong> تبدیل مخاطبان علاقه‌مند به مشتریان بالقوه و تشویق آن‌ها به برداشتن گام بعدی.</p>
+                        <ul>
+                            <li>ارائه نتایج ملموس و نظرات مشتریان</li>
+                            <li>دعوت به اقدام‌های (CTA) مستقیم</li>
+                            <li>شروع گفتگوهای هدفمند در لینکدین</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- بخش پنجم: فرآیند همکاری -->
+    <section class="content-section alt-bg">
+        <div class="container">
+            <h2 class="section-title fade-in-up">فرآیند <span>همکاری</span></h2>
+            <p class="intro-text">برای اطمینان از یک همکاری روان و موثر و رسیدن به بهترین نتیجه، فرآیند کاری ما در سه مرحله شفاف و ساختارمند تعریف می‌شود:</p>
+            <div class="three-column-grid">
+                <div class="card fade-in-up">
+                    <h4>۱. کشف و استراتژی</h4>
+                    <p>این مرحله، سنگ بنای موفقیت ماست. هدف، رسیدن به درک عمیق از اهداف و چالش‌های شماست.</p>
+                    <ul>
+                        <li>جلسه شروع پروژه (Kick-off)</li>
+                        <li>تحلیل دقیق مخاطبان هدف</li>
+                        <li>تدوین استراتژی جامع ماهانه</li>
+                        <li>ارائه تقویم محتوایی دقیق</li>
+                    </ul>
+                </div>
+                <div class="card fade-in-up">
+                    <h4>۲. خلق و اجرا</h4>
+                    <p>در این مرحله، استراتژی را به محتوای خلاقانه و تاثیرگذار تبدیل می‌کنیم.</p>
+                    <ul>
+                        <li>نگارش متون و کپشن‌ها</li>
+                        <li>طراحی گرافیک و هویت بصری</li>
+                        <li>انتشار زمان‌بندی شده محتوا</li>
+                        <li>مدیریت تعاملات و پاسخگویی</li>
+                    </ul>
+                </div>
+                <div class="card fade-in-up">
+                    <h4>۳. تحلیل و بهینه‌سازی</h4>
+                    <p>موفقیت در دنیای دیجیتال، یک فرآیند مداوم یادگیری و بهبود است.</p>
+                    <ul>
+                        <li>ارائه گزارش عملکرد ماهانه</li>
+                        <li>تحلیل شاخص‌های کلیدی (KPIs)</li>
+                        <li>جلسه ماهانه برای بررسی نتایج</li>
+                        <li>بهینه‌سازی استراتژی ماه آینده</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش ششم: زمان‌بندی و سرمایه‌گذاری -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title fade-in-up">زمان‌بندی و <span>سرمایه‌گذاری</span></h2>
+            <div class="cards-grid">
+                <div class="card fade-in-up">
+                    <h3>زمان‌بندی (نقشه راه سه ماهه)</h3>
+                    <p>برای دستیابی به نتایج پایدار، یک برنامه سه ماهه اولیه را پیشنهاد می‌کنیم:</p>
+                    <ul>
+                        <li><strong>ماه اول: پایه‌ریزی و شروع:</strong> تدوین استراتژی نهایی، آماده‌سازی قالب‌ها و شروع انتشار محتوای اولیه برای ساخت زیربنای برند.</li>
+                        <li><strong>ماه دوم: اجرا و جامعه‌سازی:</strong> اجرای کامل تقویم محتوایی، شروع تعامل فعال و هدفمند و اجرای اولین کمپین کوچک.</li>
+                        <li><strong>ماه سوم: تحلیل و بهینه‌سازی:</strong> تحلیل عمیق عملکرد، بهینه‌سازی استراتژی بر اساس داده‌ها و برنامه‌ریزی برای رشد در مقیاس بزرگتر.</li>
+                    </ul>
+                </div>
+                <div class="card fade-in-up">
+                    <h3>سرمایه‌گذاری</h3>
+                    <p>برای بهره‌مندی از تمام خدمات ذکر شده در این پروپوزال (شامل استراتژی، تولید محتوا و مدیریت برای دو پلتفرم لینکدین و اینستاگرام)، سرمایه‌گذاری شما به صورت یک هزینه ثابت ماهانه خواهد بود.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش گام بعدی -->
+    <section class="content-section cta-section">
+        <div class="container">
+            <div class="fade-in-up">
+                <h2 class="section-title">آغاز <span>حرکت</span></h2>
+                <p class="intro-text">این طرح کلی مسیری است که می‌توانیم با هم بسازیم. برای گفتگو در مورد جزئیات، خدمات و سرمایه‌گذاری، مشتاقانه منتظر تماس شما هستم.</p>
+                <a href="https://t.me/sabashaadman" class="cta-button" target="_blank" rel="noopener noreferrer">با من در تلگرام در ارتباط باشید</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>ارائه شده توسط صبا شادمان</p>
+    </footer>
+
+    <script>
+        // این اسکریپت ساده، انیمیشن‌ها را هنگام اسکرول فعال می‌کند
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1 // انیمیشن وقتی ۱۰٪ از عنصر دیده شد، اجرا می‌شود
+            });
+
+            const elements = document.querySelectorAll('.fade-in-up');
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
+
+</body>
+</html>
